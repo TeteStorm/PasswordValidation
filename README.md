@@ -1,17 +1,17 @@
-# # ValidatePasswordApi
+## ValidatePasswordApi
 
-#### APi para validação de senha seguindo as seguintes premissas:
+#### API para validaÃ§Ã£o de senha seguindo as seguintes premissas:
 
-- Tamanho mínimo 9 caracteres
-- Ao menos 1 dígito
-- Ao menos 1 letra minúscula
-- Ao menos 1 letra maiúscula
+- Tamanho mÃ­nimo 9 caracteres
+- Ao menos 1 dÃ­gito
+- Ao menos 1 letra minÃºscula
+- Ao menos 1 letra maiÃºscula
 - Ao menos 1 caractere especial do conjunto: !@#$%^&*()-+
-- Não possuir caracteres repetidos dentro do conjunto
-- Tamanho máximo de 74 caracteres (pensando no "pior" caso 26 maiusculas + 26 maiúsculas + 10 dígitos + 12 caracteres especiais todos sem repetição)
+- NÃ£o possuir caracteres repetidos dentro do conjunto
+- Tamanho mÃ¡ximo de 74 caracteres (pensando no "pior" caso 26 maiusculas + 26 maiÃºsculas + 10 dÃ­gitos + 12 caracteres especiais todos sem repetiÃ§Ã£o)
 
 #### Projeto desenvolvido em .Net 5.0 
-Componentes da aplicação
+> Componentes da aplicaÃ§Ã£o
 
 ## Projeto da Api MVC
 #### PasswordValidationApi  
@@ -47,24 +47,25 @@ A .NET Standard library which generates random passwords with different settings
 https://github.com/prjseal/PasswordGenerator
 
 ---
-## Descrição da solução
 
-Como estrátégia adotada para a solução visando robustez e flexibilidade foi adotado o uso da consagrada biblioteca de validação *Fluent Validation* que nos permite regras de validação complexas e customizáveis, combinado à riqueza da engine de expressões regulares do .net.
+ # DescriÃ§Ã£o da soluÃ§Ã£o
 
-A solução adotada contou com a criação de um validador customizado no qual também foram definidas os patterns com as regras a serem seguidas para compor as expressões regulares.
+Como estrÃ¡tÃ©gia adotada para a soluÃ§Ã£o visando robustez e flexibilidade foi adotado o uso da consagrada biblioteca de validaÃ§Ã£o *Fluent Validation* que nos permite regras de validaÃ§Ã£o complexas e customizÃ¡veis, combinado Ã  riqueza da engine de expressÃµes regulares do .net.
 
-Para cada premissa as regras foram definidas individual e explicitamente visando a legibilidade e facilidade da manutenção. Modificações nas regras e inclusão de novas cláusulas ficam facilitadas usando este approach.
+A soluÃ§Ã£o adotada contou com a criaÃ§Ã£o de um validador customizado no qual tambÃ©m foram definidas os patterns com as regras a serem seguidas para compor as expressÃµes regulares.
 
-A validação começa tratando quando o campo não possui valor seguido da verificação de tamanho (adotado máximo de 74 caracteres não repetidos)
-As regras de validação são tratadas via expressão regular uma por uma (com a estratégia de continuar avaliando após quebrar uma regra para no final poder ter todos os erros)  regras restritivas, criticando caso a senha informada não tenha a premissa requerida.
-No final uma expressão regular(aqui uso de classe estática para ser mais perfomática) avalia se a expressão atende combinadamente todas as regras.
+Para cada premissa as regras foram definidas individual e explicitamente visando a legibilidade e facilidade da manutenÃ§Ã£o. ModificaÃ§Ãµes nas regras e inclusÃ£o de novas clÃ¡usulas ficam facilitadas usando este approach.
 
-Algumas escolhas adotadas pela solução:
+A validaÃ§Ã£o comeÃ§a tratando quando o campo nÃ£o possui valor seguido da verificaÃ§Ã£o de tamanho (adotado mÃ¡ximo de 74 caracteres nÃ£o repetidos)
+As regras de validaÃ§Ã£o sÃ£o tratadas via expressÃ£o regular uma por uma (com a estratÃ©gia de continuar avaliando apÃ³s quebrar uma regra para no final poder ter todos os erros)  regras restritivas, criticando caso a senha informada nÃ£o tenha a premissa requerida.
+No final uma expressÃ£o regular(aqui uso de classe estÃ¡tica para ser mais perfomÃ¡tica) avalia se a expressÃ£o atende combinadamente todas as regras.
+
+Algumas escolhas adotadas pela soluÃ§Ã£o:
 - Expor as strings com os patterns foi vizando a testabilidade do mesmos.
-- Uso de sobrecargas com TimeOut condicionando tempo limite diminuindo a influência de backtracking que possa afetar o desempenho (adotado conforme sugere a própria lib evitando que algum tipo de input malicioso possa de alguma maneira travar a aplicação).
-- Também foi evitado o uso das chamadas Evil Regexes*.
-- Uso do Cache das expressões regulares onde possível (exceto .Matches() da api de fluent valitation por não disponibilidar a opção de timeout), evitando degradação de performance.
-- Testes exaustivos utilizando dados inválidos e quase válidos, bem como informações válidas.
+- Uso de sobrecargas com TimeOut condicionando tempo limite diminuindo a influÃªncia de backtracking que possa afetar o desempenho (adotado conforme sugere a prÃ³pria lib evitando que algum tipo de input malicioso possa de alguma maneira travar a aplicaÃ§Ã£o).
+- TambÃ©m foi evitado o uso das chamadas Evil Regexes*.
+- Uso do Cache das expressÃµes regulares onde possÃ­vel (exceto .Matches() da api de fluent valitation por nÃ£o disponibilidar a opÃ§Ã£o de timeout), evitando degradaÃ§Ã£o de performance.
+- Testes exaustivos utilizando dados invÃ¡lidos e quase vÃ¡lidos, bem como informaÃ§Ãµes vÃ¡lidas.
 
 ```
 * Evil Regex pattern contains:
@@ -82,6 +83,6 @@ Examples of Evil Patterns:
 
 ```
 
-#### Referências:
+#### ReferÃªncias:
 https://docs.microsoft.com/en-us/dotnet/standard/base-types/best-practices
 
