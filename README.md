@@ -8,15 +8,15 @@
 - Ao menos 1 letra maiúscula
 - Ao menos 1 caractere especial do conjunto: !@#$%^&*()-+
 - Não possuir caracteres repetidos dentro do conjunto
-- Tamanho máximo de 74 caracteres (pensando no "pior" caso 26 maiusculas + 26 maiúsculas + 10 dígitos + 12 caracteres especiais todos sem repetição)
+- Tamanho máximo de 74 caracteres (premissa assumida pensando no "pior" caso 26 maiusculas + 26 maiúsculas + 10 dígitos + 12 caracteres especiais todos sem repetição)
 
 #### Projeto desenvolvido em .Net 5.0 
-> Componentes da aplicação
+##### Componentes da aplicação
 
 ## Projeto da Api MVC
 #### PasswordValidationApi  
 Para executar o projeto: 
-- Ctrl+F5 acessar http://localhost:51696
+> Ctrl+F5 acessar http://localhost:51696
 
 ##### Payload exemplo:
 ```
@@ -30,7 +30,7 @@ Content-Type: application/json
 ## Projeto de Testes NUnit
 #### PasswordValidationUnitTests
 Para executar os testes projeto:
-- Menu Test > Run All Tests ou Ctrl+R,A
+> Menu Test > Run All Tests ou Ctrl+R,A
 
 --- 
 
@@ -54,9 +54,9 @@ Como estrátégia adotada para a solução visando robustez e flexibilidade foi 
 
 A solução adotada contou com a criação de um validador customizado no qual também foram definidas os patterns com as regras a serem seguidas para compor as expressões regulares.
 
-Para cada premissa as regras foram definidas individual e explicitamente visando a legibilidade e facilidade da manutenção. Modificações nas regras e inclusão de novas cláusulas ficam facilitadas usando este approach.
+Para cada premissa as regras foram definidas individual e explicitamente visando a legibilidade e facilidade da manutenção. Isso implica que as modificações nas regras e inclusão de novas cláusulas ficam facilitadas com este approach.
 
-A validação começa tratando quando o campo não possui valor seguido da verificação de tamanho (adotado máximo de 74 caracteres não repetidos)
+A validação começa tratando quando o campo não possui valor(null ou empty- usando a mesma mensagem de retorno para termos de simplificação) seguindo da verificação de tamanho (adotado máximo de 74 caracteres não repetidos)
 As regras de validação são tratadas via expressão regular uma por uma (com a estratégia de continuar avaliando após quebrar uma regra para no final poder ter todos os erros)  regras restritivas, criticando caso a senha informada não tenha a premissa requerida.
 No final uma expressão regular(aqui uso de classe estática para ser mais perfomática) avalia se a expressão atende combinadamente todas as regras.
 
