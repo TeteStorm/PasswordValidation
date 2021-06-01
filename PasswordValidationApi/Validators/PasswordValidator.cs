@@ -14,11 +14,13 @@ namespace PasswordValidationApi.Validators
         public static readonly string hasEspecialCharacterPattern = "!@#$%^&*()+-";
 
         public static readonly string baseSingleRegexExpression = "[{0}]+?";
-        /// [ ] Character group.
-        ///  +? Matches the previous element one or more times, but as few times as possible (lazy quantifiers).
+        // [ ] Character group.
+        //  +? Matches the previous element one or more times, but as few times as possible (lazy quantifiers).
+
         public static readonly string baseMultipleRegexExpression = $"^{baseSingleRegexExpression}$";
-        ///  ^  Begin the match at the beginning of the string.
-        ///  $  End the match at the end of the string.
+        //  ^  Begin the match at the beginning of the string.
+        //  $  End the match at the end of the string.
+
         private readonly TimeSpan matchTimeout = new TimeSpan(100);
 
         public PasswordValidator()
